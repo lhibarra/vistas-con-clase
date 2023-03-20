@@ -1,0 +1,24 @@
+{% extends "SocialTravel/base.html" %}
+{% load static %}
+{% block main %}
+
+
+{%if form %}
+    <h1>Admin de Post</h1>
+    <form action="{% url 'agregar-post' %}" method="post">
+        {% csrf_token %}
+        {{form.as_p}} <!--Es una variable de django template language-->
+        <input type="submit" value="Agregar">
+
+    </form>
+{%else%}
+    <h1>Resuldo de la búsqueda</h1>
+{%endif%}
+<ul>
+    {% for post in posts %}
+    <li>{{post.id}} - {{post.heading}}</li>
+    {% endfor %}
+</ul>
+
+
+{% endblock %}
